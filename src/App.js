@@ -1,10 +1,14 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { FormControl } from "react-bootstrap";
-import { InputGroup } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Form } from "react-bootstrap";
+import {
+  Box,
+  TextField,
+  createTheme,
+  useMediaQuery,
+  ThemeProvider,
+} from "@mui/material";
+import CssBaseline from "@mui/material/CssBaseline";
 
 var gbp_zar = 0;
 var zar_gbp = 0;
@@ -51,8 +55,15 @@ function CurrencyInput({ currency, currencyAmount, onCurrencyChange }) {
   }
 
   return (
-    <div className="font-link">
-      <fieldset className="form-label ms-2">
+    <div>
+      <Box
+        component="form"
+        sx={{
+          "& > :not(style)": { m: 1, width: "25ch" },
+        }}
+        noValidate
+        autoComplete="off"
+      >
         <legend>
           Enter value in {currencyNames[currency].name}{" "}
           <img
@@ -60,13 +71,14 @@ function CurrencyInput({ currency, currencyAmount, onCurrencyChange }) {
             alt={currencyNames[currency].name}
           ></img>
         </legend>
-      </fieldset>
-      <Form.Group className="mb-3">
-        <InputGroup className="mb-3" size="lg">
-          <InputGroup.Text>{currency === "g" ? "£" : "R"}</InputGroup.Text>
-          <FormControl value={currencyAmount} onChange={handleChange} />
-        </InputGroup>
-      </Form.Group>
+        <TextField
+          id="outlined-helperText"
+          label={currency === "g" ? "£" : "R"}
+          variant="outlined"
+          value={currencyAmount}
+          onChange={handleChange}
+        />
+      </Box>
     </div>
   );
 }
@@ -117,10 +129,31 @@ function CurrencyCalculator() {
 }
 
 function App() {
+  // const [darkMode, setDarkMode] = useState(true);
+  // const paletteType = darkMode ? "dark" : "light";
+  // const theme = createTheme({
+  //   palette: {
+  //     mode: paletteType,
+  //   },
+  // });
+
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: light)");
+
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: prefersDarkMode ? "dark" : "light",
+        },
+      }),
+    [prefersDarkMode]
+  );
+
   return (
-    <div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
       <CurrencyCalculator />
-    </div>
+    </ThemeProvider>
   );
 }
 
