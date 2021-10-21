@@ -7,12 +7,9 @@ import {
   FormGroup,
   FormControlLabel,
   createTheme,
-  useMediaQuery,
   ThemeProvider,
-  Stack,
   styled,
   Switch,
-  Typography,
 } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 
