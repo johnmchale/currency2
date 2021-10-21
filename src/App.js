@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {
   Box,
+  Grid,
   TextField,
   FormGroup,
   FormControlLabel,
@@ -67,13 +68,15 @@ function CurrencyInput({ currency, currencyAmount, onCurrencyChange }) {
         noValidate
         autoComplete="off"
       >
-        <legend>
-          Enter value in {currencyNames[currency].name}{" "}
-          <img
-            src={currencyNames[currency].flag}
-            alt={currencyNames[currency].name}
-          ></img>
-        </legend>
+        <Grid container direction="row" spacing={1} alignItems="center">
+          <Grid item>Enter value in {currencyNames[currency].name}</Grid>
+          <Grid item>
+            <img
+              src={currencyNames[currency].flag}
+              alt={currencyNames[currency].name}
+            ></img>
+          </Grid>
+        </Grid>
         <TextField
           id="outlined-helperText"
           label={currency === "g" ? "£" : "R"}
