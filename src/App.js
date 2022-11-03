@@ -98,7 +98,7 @@ function CurrencyCalculator() {
   useEffect(() => {
     const axiosPosts = async () => {
       const response = await axios(
-        "https://free.currconv.com/api/v7/convert?q=GBP_ZAR,ZAR_GBP&compact=ultra&apiKey=56860b096bf50b37a3b3"
+        "https://free.currconv.com/api/v7/convert?q=GBP_ZAR,ZAR_GBP&compact=ultra&apiKey=8e2557b9ab916a544f12"
       );
       setPosts(response.data);
     };
