@@ -109,7 +109,7 @@ function CurrencyCalculator() {
   useEffect(() => {
     const fetchPosts = async () => {
       var myHeaders = new Headers();
-      myHeaders.append("apikey", process.env.REACT_APP_API_KEY);
+      myHeaders.append("apikey", "sMMu5bn0QcMA8ftfTiRugAnq05hFFoRh");
 
       var requestOptions = {
         method: "GET",
